@@ -26,7 +26,7 @@ void ParticleFilter::init(double x, double y, double theta, double std[]) {
 	// TODO: Set the number of particles. Initialize all particles to first position (based on estimates of 
 	//   x, y, theta and their uncertainties from GPS) and all weights to 1.
     
-    num_particles = 10;
+    num_particles = 100;
     
     // resize particle and weights
     particles.resize(num_particles);
@@ -222,7 +222,7 @@ void ParticleFilter::updateWeights(double sensor_range, double std_landmark[],
             double p_weight = gauss_norm * exp(-exponent);
             
             // update weight
-            particles[i].weight += p_weight;
+            particles[i].weight *= p_weight;
         }
         weights[i] = particles[i].weight;
     }
